@@ -29,5 +29,48 @@ public static void main(String[] args) {
         listCons.add(consDois);
         listCons.add(consTres);
     }
-
+    public static void abrirMenu() {
+    int escolha = 0;
+        System.out.println("------------------- Bem Vindo -------------------");
+        do {
+            System.out.println("\n------------------- Menu -------------------");
+            System.out.println("1 - Consultar funcionários!");
+            System.out.println("2 - Cadastrar funcionários!");
+            System.out.println("3 - Remover funcionários!");
+            System.out.println("4 - Consultar construções!");
+            System.out.println("5 - Cadastrar construções!");
+            System.out.println("6 - Remover construções!");
+            System.out.println("0 - Sair!");
+            escolha = scan.nextInt();
+            scan.nextLine();
+            validarEscolha(escolha);
+        } while (escolha != 0);
+    }
+    public static void validarEscolha(int escolha) {
+    switch (escolha) {
+        case 1:
+            consultarFunc();
+            break;
+        case 2:
+            cadastrarFunc();
+            break;
+        case 3:
+            removerFunc();
+            break;
+        case 4:
+            consultarCons();
+            break;
+        case 5:
+            cadastrarCons();
+            break;
+        case 6:
+            removerCons();
+            break;
+        case 0:
+            System.out.println("Muito obrigado por utilizar o sistema!");
+            break;
+        default:
+            System.out.println("Digite uma opção válida")
+    }
+    }
 }
