@@ -75,9 +75,9 @@ public class Principal {
             case 6:
                 cadastrarCons();
                 break;
-            /*case 7:
+            case 7:
                 editarCons();
-                break;*/
+                break;
             case 8:
                 removerCons();
                 break;
@@ -98,7 +98,7 @@ public class Principal {
             System.out.printf("%d - ", listFunc.indexOf(funcionarios) + 1);
             funcionarios.mostrarFuncionario();
         }
-            if (listFunc.size()==0){
+            if (listFunc.isEmpty()) {
                 System.out.println("Não há funcionarios");
             }
 
@@ -181,7 +181,7 @@ public class Principal {
             System.out.printf("%d - ", listCons.indexOf(construcao) + 1);
             construcao.mostrarConstrucao();
         }
-        if (listFunc.size()==0){
+        if (listFunc.isEmpty()){
             System.out.println("Não há construções");
         }
     }
@@ -195,6 +195,48 @@ public class Principal {
         construcao.setDataInicio(scan.nextLine());
         listCons.add(construcao);
         System.out.println("Funcionário adicionado com sucesso!");
+    }
+    private static void editarCons() {
+        consultarCons();
+        System.out.println("Escolha a construção que deseja editar ");
+        System.out.println("Digite 0 para cancelar: ");
+        int escolha = scan.nextInt();
+        scan.nextLine();
+        if (escolha == 0) {
+            return;
+        }
+        if (listCons.size() >= escolha && escolha > 0) {
+            mostrarMenuEdicaoCons();
+            int escolhaEdicao = scan.nextInt();
+            scan.nextLine();
+            if (escolhaEdicao > 3 || escolhaEdicao < 0) {
+                System.out.println("Escolha uma opção válida: ");
+                editarCons();
+            } else {
+                alterarDadosCons(escolha, escolhaEdicao);
+            }
+
+        }
+    }
+    private static void mostrarMenuEdicaoCons() {
+        System.out.println("Selecione uma opção para editar: ");
+        System.out.println("1 - Nome");
+        System.out.println("2 - Endereço");
+        System.out.println("3 - Data de inicio");
+    }
+    private static void alterarDadosCons(int escolha, int escolhaEdicao) {
+        if (escolhaEdicao == 1) {
+            System.out.println("Informe o nome: ");
+            listCons.get(escolha - 1).setNome(scan.nextLine());
+        } else if (escolhaEdicao == 2) {
+            System.out.println("Informe o novo endereço: ");
+            listCons.get(escolha - 1).setEndereco(scan.nextLine());
+        } else if (escolhaEdicao == 3) {
+            System.out.println("Informe a nova data de inicio: ");
+            String dataInicio = scan.nextLine();
+            listCons.get(escolha - 1).setDataInicio(dataInicio);
+        }
+        System.out.println("Construção alterada com sucesso! ");
     }
     private static void removerCons() {
         consultarCons();
