@@ -128,11 +128,11 @@ public class Principal {
             mostrarMenuEdicaoFunc();
             int escolhaEdicao = scan.nextInt();
             scan.nextLine();
-            if (escolhaEdicao > listFunc.size() || escolhaEdicao < 0) {
+            if (escolhaEdicao > 3 || escolhaEdicao < 0) {
                 System.out.println("Escolha uma opção válida: ");
                 editarFunc();
             } else {
-                alterarDadosFunc(escolhaEdicao, escolha);
+                alterarDadosFunc(escolha, escolhaEdicao);
             }
 
         }
