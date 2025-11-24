@@ -20,12 +20,15 @@ public class Principal {
         Funcionarios funcUm = new Funcionarios("Tiago", "Pedreiro", 3500);
         Funcionarios funcDois = new Funcionarios("Pedro", "Servente", 2600);
         Funcionarios funcTres = new Funcionarios("Marcos", "Engenheiro", 3006);
+
         Construcao consUm = new Construcao("Prédio comercial", "Av. Brasil, 700", "05/10/2025");
         Construcao consDois = new Construcao("Faculdade", "Av. das Torres, 500", "12/06/1889");
         Construcao consTres = new Construcao("Gagarem", "R. Altemar Dutra Leste, 815", "08/12/2023");
+
         listFunc.add(funcUm);
         listFunc.add(funcDois);
         listFunc.add(funcTres);
+
         listCons.add(consUm);
         listCons.add(consDois);
         listCons.add(consTres);
@@ -38,10 +41,13 @@ public class Principal {
             System.out.println("\n------------------- Menu -------------------");
             System.out.println("1 - Consultar funcionários!");
             System.out.println("2 - Cadastrar funcionários!");
-            System.out.println("3 - Remover funcionários!");
-            System.out.println("4 - Consultar construções!");
-            System.out.println("5 - Cadastrar construções!");
-            System.out.println("6 - Remover construções!");
+            System.out.println("3 - Editar funcionários!");
+            System.out.println("4 - Remover funcionários!");
+            System.out.println("5 - Consultar construções!");
+            System.out.println("6 - Cadastrar construções!");
+            System.out.println("7 - Editar construção!");
+            System.out.println("8 - Remover construções!");
+            System.out.println("9 - Relações funcionário x construção!");
             System.out.println("0 - Sair!");
             escolha = scan.nextInt();
             scan.nextLine();
@@ -58,17 +64,26 @@ public class Principal {
                 cadastrarFunc();
                 break;
             case 3:
-                removerFunc();
+                editarFunc();
                 break;
             case 4:
-                consultarCons();
+                removerFunc();
                 break;
             case 5:
-                cadastrarCons();
+                consultarCons();
                 break;
             case 6:
+                cadastrarCons();
+                break;
+            /*case 7:
+                editarCons();
+                break;*/
+            case 8:
                 removerCons();
                 break;
+            /*case 9:
+                relacoes();
+                break;*/
             case 0:
                 System.out.println("Muito obrigado por utilizar o sistema!");
                 break;
@@ -99,6 +114,49 @@ public class Principal {
         scan.nextLine();
         listFunc.add(funcionarios);
         System.out.println("Funcionário adicionado com sucesso!");
+    }
+    private static void editarFunc() {
+        consultarFunc();
+        System.out.println("Escolha o funcionário que deseja editar ");
+        System.out.println("Digite 0 para cancelar: ");
+        int escolha = scan.nextInt();
+        scan.nextLine();
+        if (escolha == 0) {
+            return;
+        }
+        if (listFunc.size() >= escolha && escolha > 0) {
+            mostrarMenuEdicaoFunc();
+            int escolhaEdicao = scan.nextInt();
+            scan.nextLine();
+            if (escolhaEdicao > listFunc.size() || escolhaEdicao < 0) {
+                System.out.println("Escolha uma opção válida: ");
+                editarFunc();
+            } else {
+                alterarDadosFunc(escolhaEdicao, escolha);
+            }
+
+        }
+    }
+    private static void mostrarMenuEdicaoFunc() {
+        System.out.println("Selecione uma opção para editar: ");
+        System.out.println("1 - Nome");
+        System.out.println("2 - Cargo");
+        System.out.println("3 - Salário");
+    }
+    private static void alterarDadosFunc(int escolha, int escolhaEdicao) {
+        if (escolhaEdicao == 1) {
+            System.out.println("Informe o nome: ");
+            listFunc.get(escolha - 1).setNome(scan.nextLine());
+        } else if (escolhaEdicao == 2) {
+            System.out.println("Informe o novo cargo: ");
+            listFunc.get(escolha - 1).setCargo(scan.nextLine());
+        } else if (escolhaEdicao == 3) {
+            System.out.println("Informe o novo salário: ");
+            double salario = scan.nextDouble();
+            scan.nextLine();
+            listFunc.get(escolha - 1).setSalario(salario);
+        }
+        System.out.println("Funcionário alterado com sucesso! ");
     }
     private static void removerFunc() {
         consultarFunc();
