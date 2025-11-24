@@ -53,6 +53,6 @@ public class Funcionarios {
         return salario;
     }
     public void mostrarFuncionario(){
-        System.out.printf("Nome: %s, Cargo: %s, Salário: %f\n", nome, cargo, salario);
+        System.out.printf("Nome: %s, Cargo: %s, Salário: %.2f\n", nome, cargo, salario);
     }
 }
