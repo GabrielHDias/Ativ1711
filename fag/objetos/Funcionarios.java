@@ -1,7 +1,7 @@
 package fag.objetos;
 
-import fag.Principal
-import fag.objetos.Construcao
+import fag.Principal;
+import fag.objetos.Construcao;
 
 public class Funcionarios {
 
